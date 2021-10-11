@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Search Example</title>
     <meta charset="utf-8">
@@ -21,56 +22,150 @@
         .default-color {
             color: #015045;
         }
-        .hover:hover{
+
+        .hover:hover {
             color: white;
             background-color: #015045 !important;
-        }   
+        }
+
+        img {
+            cursor: pointer;
+            background-color: white;
+        }
     </style>
+    <script>
+        var ids = [];
+        var triesCount = 0;
+        var animalLocation = 13;
+        var distanceOfAnimal = "unknown"
+        for (var i = 0; i < 24; i++) {
+            ids.push("img-" + i)
+        }
+        function reset() {
+            triesCount = 0;
+            animalLocation = Math.round(Math.random() * (23 - 0) + 0);
+            document.getElementById("tries").innerHTML = "Number of triesis zero";
+            distanceOfAnimal = "unknown"
+            document.getElementById("distance").innerHTML = "Distance is " + distanceOfAnimal;
+            for (var i = 0; i < 24; i++) {
+
+                document.getElementById(ids[i]).src = "xmas.jpg";
+            }
+
+        }
+        function check(index) {
+            let id = ids[index];
+            if (index == animalLocation) {
+                document.getElementById(id).src = "drama.jpg";
+            } else {
+                document.getElementById(id).src = "dirt.jpg";
+            }
+
+
+            triesCount++;
+            document.getElementById("tries").innerHTML = "Number of triesis " + triesCount;
+            distanceOfAnimal = distance(index, animalLocation);
+
+            document.getElementById("distance").innerHTML = "Distance is " + distanceOfAnimal;
+        }
+        function distance(pos1, pos2) {
+            var columm = 6;
+            var valueToaddsub = pos1 <= animalLocation ? columm : -columm;
+            var verticalDist = 0;
+            var horizantalDist = 0;
+            var minRange = Math.abs(animalLocation / columm) * columm;
+            var maxRange = minRange + (columm)
+            while (true) {
+
+                Math.abs(animalLocation - pos1)
+                if (minRange <= pos1 && pos1 < maxRange) {
+                    horizantalDist = Math.abs(animalLocation - pos1);
+                    break;
+                }
+                else {
+                    pos1 = pos1 + valueToaddsub;
+                    verticalDist = verticalDist + 1;
+                }
+            }
+
+            return Math.max(verticalDist, horizantalDist);
+        }
+
+
+    </script>
 </head>
+
 <body>
     <div class="container">
         <h1 class="text-center text-white">Animal hunt by Sai Kumar Mudhagoni</h1>
         <div class="row justify-content-around">
-            <div class="btn default-color bold col-md-5 shadow-lg p-3 mb-5 bg-white rounded hover">Click on the squares to search for wild life</div>
+            <div class="btn default-color bold col-md-5 shadow-lg p-3 mb-5 bg-white rounded hover">Click on the squares
+                to search for wild life</div>
             <div id="tries" class="shadow-lg p-3 mb-5 bg-white rounded col-md-3">Number of triesis zero.</div>
-            <div id="distance"  class="shadow-lg p-3 mb-5 bg-white rounded col-md-3">Distance is unknown.</div>
-        </div>    
-        
+            <div id="distance" class="shadow-lg p-3 mb-5 bg-white rounded col-md-3">Distance is unknown.</div>
+        </div>
+
         <div class="row justify-content-center">
             <div class="row ">
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-0" onclick="check(0)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-1" onclick="check(1)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-2" onclick="check(2)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-3" onclick="check(3)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-4" onclick="check(4)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-5" onclick="check(5)"></div>
+
             </div>
             <div class="row">
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-6" onclick="check(6)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-7" onclick="check(7)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-8" onclick="check(8)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-9" onclick="check(9)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-10" onclick="check(10)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Hallowen" width="200px"
+                        height="200px" id="img-11" onclick="check(11)"></div>
+
             </div>
             <div class="row">
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-12" onclick="check(12)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-13" onclick="check(13)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-14" onclick="check(14)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-15" onclick="check(15)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-16" onclick="check(16)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-17" onclick="check(17)"></div>
             </div>
             <div class="row">
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
-                <div class="col-sm-2 shadow  mb-2"><img src="xmas.jpg" alt="xmas plant" width="200px" height="200px"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-18" onclick="check(18)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-19" onclick="check(19)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-20" onclick="check(20)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-21" onclick="check(21)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-22" onclick="check(22)"></div>
+                <div class="col-sm-2 shadow  mb-2"><img class="img-fluid" src="xmas.jpg" alt="Halloween" width="200px"
+                        height="200px" id="img-23" onclick="check(23)"></div>
             </div>
-        </div>   
         </div>
+    </div>
 </body>
 
 </html>
